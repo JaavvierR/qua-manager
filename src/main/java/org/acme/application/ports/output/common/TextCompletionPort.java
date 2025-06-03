@@ -1,11 +1,11 @@
 package org.acme.application.ports.output.common;
 
-
+import io.smallrye.mutiny.Uni;
 
 public interface TextCompletionPort {
 
     // --- Generación de texto ---
-    String generateResponse(String validationPrompt);
+    Uni<String> generateResponseAsync(String validationPrompt);
     /**
      * Genera una completación de texto basada en una solicitud y una plantilla.
      *
@@ -21,13 +21,7 @@ public interface TextCompletionPort {
      * @param prompt El mensaje a enviar
      * @return La respuesta del modelo
      */
-    String sendMessage(String prompt);
 
-    /**
-     * Obtiene el nombre del modelo en uso.
-     *
-     * @return Nombre del modelo
-     */
     String getModelName();
 
     // --- Métricas de ejecución ---
@@ -54,13 +48,5 @@ public interface TextCompletionPort {
      * @param response Respuesta del modelo
      * @return Entidades extraídas
      */
-    String extractEntities(String response);
 
-    /**
-     * Extrae un objeto JSON desde una respuesta del modelo.
-     *
-     * @param response Respuesta del modelo
-     * @return Representación JSON como String
-     */
-    //public String extract(CvDataModel cvDataModel);
 }
